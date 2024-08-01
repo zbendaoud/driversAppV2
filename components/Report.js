@@ -123,7 +123,8 @@ const Report = ({ report, usReport }) => {
           </Button>
 
           <Button
-            onClick={generateUsPdf}
+            onClick={usReport ? generateUsPdf : null}
+            disabled={!usReport}
             className="bg-blue-700 hover:bg-blue-700/90"
           >
             Download Us Report
