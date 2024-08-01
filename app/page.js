@@ -708,6 +708,7 @@ export default function Home() {
                                 className={`p-4 mb-2 bg-white rounded-lg flex justify-between gap-4 ${
                                   stop.unknown ? "bg-orange-200" : ""
                                 }`}
+                                style={{backgroundColor: stop?.unknown === true ? "#fed7aa" : ""}}
                               >
                                 <div>
                                   {stop.OrderNum} {"- "}
