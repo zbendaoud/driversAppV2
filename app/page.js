@@ -713,12 +713,7 @@ export default function Home() {
                                 <div>
                                   {stop.OrderNum} {"- "}
                                   {stop.shipToName} {"- "}
-                                  {stop.address?.zip}- Unknown:{" "}
-                                  {stop.unknown === true
-                                    ? "Yes"
-                                    : stop.unknown === false
-                                    ? "No"
-                                    : "not defined"}
+                                  {stop.address?.zip}
                                 </div>
 
                                 <Trash2
