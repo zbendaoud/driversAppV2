@@ -145,7 +145,13 @@ const Report = ({ report, usReport }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {report?.stops?.map((stop, index) => (
+          {report?.stops?.reduce((acc, stop, index) => {
+            const legTotalKm = (index === 0 ? 0 : acc[index - 1].legTotalKm) + stop.legDistance; // Calculate legTotalKm
+            const legCost = stop.legDistance * 2.5; // Calculate legCost
+            const legTotalCost = (index === 0 ? 0 : acc[index - 1].legTotalCost) + legCost; // Calculate legTotalCost
+            acc.push({ ...stop, legTotalKm, legCost, legTotalCost }); // Add legTotalKm, legCost, and legTotalCost to the stop object
+            return acc;
+          }, []).map((stop, index) => (
             <TableRow
               key={index}
               className={`${
@@ -162,9 +168,9 @@ const Report = ({ report, usReport }) => {
                 {stop.location.address.zip}
               </TableCell>
               <TableCell>{stop.legDistance}</TableCell>
-              <TableCell>{stop.legTotalKm}</TableCell>
-              <TableCell>{stop.legCost}</TableCell>
-              <TableCell>{stop.legTotalCost}</TableCell>
+              <TableCell>{stop.legTotalKm.toFixed(2)}</TableCell>
+              <TableCell>{stop.legCost.toFixed(2)}</TableCell>
+              <TableCell>{stop.legTotalCost.toFixed(2)}</TableCell>
               <TableCell>{stop.legDriveDuration?.toFixed(2)}</TableCell>
             </TableRow>
           ))}

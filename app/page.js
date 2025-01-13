@@ -258,6 +258,7 @@ export default function Home() {
             plannedStartDate,
             "yyyy-MM-dd'T'HH:mm:ss"
           ),
+          
         }
       );
       setReport(response.data);
@@ -334,6 +335,7 @@ export default function Home() {
   useEffect(() => {
     if (date) {
       const newDate = new Date(date);
+      newDate.setHours(newDate.getHours() + 5);
       newDate.setHours(7);
       newDate.setMinutes(30);
       newDate.setSeconds(0); // Set seconds to 0
@@ -346,6 +348,7 @@ export default function Home() {
       newDate.setHours(parseInt(hours));
       newDate.setMinutes(parseInt(minutes));
       newDate.setSeconds(parseInt(seconds)); // Set seconds
+      console.log(newDate)
       setPlannedStartDate(newDate);
     }
   }, [date]);
